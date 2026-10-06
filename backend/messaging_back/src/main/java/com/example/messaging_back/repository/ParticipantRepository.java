@@ -1,8 +1,6 @@
 package com.example.messaging_back.repository;
 
-import com.example.messaging_back.entity.Conversation;
 import com.example.messaging_back.entity.Participant;
-import com.example.messaging_back.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,10 +10,10 @@ import java.util.UUID;
 
 public interface ParticipantRepository extends JpaRepository<Participant, UUID> {
 
-    List<Participant> findByUser(User user);
+    List<Participant> findByUserId(UUID userId);
 
-    List<Participant> findByConversation(Conversation conversation);
+    List<Participant> findByConversationId(UUID conversationId);
 
     @Transactional
-    void deleteByConversation(Conversation conversation);
+    void deleteByConversationId(UUID conversationId);
 }
