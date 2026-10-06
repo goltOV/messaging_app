@@ -13,11 +13,11 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sender_id", nullable = false)
     private User sender;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "conversation_id", nullable = false)
     private Conversation conversation;
 
