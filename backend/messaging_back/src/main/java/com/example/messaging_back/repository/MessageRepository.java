@@ -8,6 +8,6 @@ import java.util.UUID;
 
 public interface MessageRepository extends JpaRepository<Message, UUID> {
 
-    List<Message> findByConversationIdOrderBySentAtAsc(UUID conversation);
+    List<Message> findByConversationIdOrderBySentAtAsc(UUID conversationId);
 
 }
