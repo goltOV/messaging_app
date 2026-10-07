@@ -55,13 +55,13 @@ public class ConversationService {
         participantRepository.saveAll(participants);
     }
 
-
-
-
-
-
-
-
+    @Transactional
+    public void addParticipants(UUID conversationId, List<UUID> membersIds){
+        membersIds = membersIds.stream().distinct().toList();
+        Conversation conversation =
+                conversationRepository.findById(conversationId)
+                        .orElseThrow(() -> new RuntimeException("Conversation not found"));
+        saveParticipants(conversation, membersIds);
     }
 
     public Optional<Conversation> getConversationById(UUID id) {
