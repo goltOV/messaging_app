@@ -68,8 +68,8 @@ public class ConversationService {
         return conversationRepository.findById(id);
     }
 
-    public List<Conversation> getAllConversations() {
-        return conversationRepository.findAll();
+    public List<Conversation> getAllConversations(UUID userId) {
+        return conversationRepository.findByUserId(userId);
     }
 
     public void deleteConversation(UUID id) {
