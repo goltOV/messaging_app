@@ -72,11 +72,11 @@ public class ConversationService {
         return conversationRepository.findByUserId(userId);
     }
 
-    public void deleteConversation(UUID id) {
-        Conversation conversation = conversationRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Conversation not found"));
-        participantRepository.deleteByConversation(conversation);
-        conversationRepository.deleteById(id);
+    @Transactional
+    public void deleteConversationById(UUID conversationId) {
+        messageRepository.deleteByConversationId(conversationId);
+        participantRepository.deleteByConversationId(conversationId);
+        conversationRepository.deleteById(conversationId);
 
     }
 }
