@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "participants")
+@Table(name = "participants", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "conversation_id"}))
 public class Participant {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
