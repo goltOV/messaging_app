@@ -14,6 +14,8 @@ public interface ParticipantRepository extends JpaRepository<Participant, UUID> 
 
     List<Participant> findByConversationId(UUID conversationId);
 
+    boolean existsByUserIdAndConversationId(UUID userId, UUID conversationId);
+
     @Transactional
     void deleteByConversationId(UUID conversationId);
 }
