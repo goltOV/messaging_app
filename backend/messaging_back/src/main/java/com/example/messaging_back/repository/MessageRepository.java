@@ -2,6 +2,7 @@ package com.example.messaging_back.repository;
 
 import com.example.messaging_back.entity.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -10,4 +11,6 @@ public interface MessageRepository extends JpaRepository<Message, UUID> {
 
     List<Message> findByConversationIdOrderBySentAtAsc(UUID conversationId);
 
+    @Transactional
+    void deleteByConversationId(UUID conversationId);
 }
