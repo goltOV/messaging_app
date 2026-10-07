@@ -4,6 +4,7 @@ package com.example.messaging_back.service;
 import com.example.messaging_back.entity.User;
 import com.example.messaging_back.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -14,6 +15,7 @@ public class UserService {
 
     public UserService(UserRepository userRepository){this.userRepository = userRepository;}
 
+    @Transactional
     public User createUser(String username, String email, String password){
         User user = new User();
         user.setUsername(username);
@@ -36,6 +38,7 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
+    @Transactional
     public void deleteUser(UUID id){
         userRepository.deleteById(id);
     }
