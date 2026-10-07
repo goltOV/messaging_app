@@ -48,10 +48,11 @@ public class MessageService {
         return messageRepository.findById(id);
     }
 
-    public List<Message> getMessagesByConversation(Conversation conversation){
-        return messageRepository.findByConversationOrderBySentAtAsc(conversation);
+    public List<Message> getMessagesByConversationId(UUID conversationId){
+        return messageRepository.findByConversationIdOrderBySentAtAsc(conversationId);
     }
 
+    @Transactional
     public void deleteMessage(UUID id){
         messageRepository.deleteById(id);
     }
