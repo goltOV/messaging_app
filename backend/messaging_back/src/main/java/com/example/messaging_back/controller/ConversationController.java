@@ -38,10 +38,10 @@ public class ConversationController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping
-    public ResponseEntity<List<Conversation>> getAllConversations(){
+    @GetMapping("/byUser/{userId}")
+    public ResponseEntity<List<Conversation>> getAllConversations(@PathVariable UUID userId){
         return ResponseEntity.ok(
-                conversationService.getAllConversations()
+                conversationService.getAllConversations(userId)
         );
     }
 
