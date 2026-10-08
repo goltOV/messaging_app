@@ -2,8 +2,8 @@ package com.example.messaging_back.controller;
 
 
 import com.example.messaging_back.entity.Conversation;
-import com.example.messaging_back.entity.User;
 import com.example.messaging_back.service.ConversationService;
+import com.example.messaging_back.dto.CreateConversationRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,12 +21,12 @@ public class ConversationController {
     }
 
     @PostMapping
-    public ResponseEntity<Conversation> createConversation(@RequestBody Conversation request, List<User> members){
+    public ResponseEntity<Conversation> createConversation(@RequestBody CreateConversationRequest request){
         return ResponseEntity.ok(
                 conversationService.createConversation(
-                        request.getName(),
+                        request.name(),
                         request.isGroup(),
-                        members
+                        request.membersIds()
                 )
         );
     }
