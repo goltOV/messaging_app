@@ -1,7 +1,8 @@
 package com.example.messaging_back.controller;
 
-import com.example.messaging_back.entity.Conversation;
+import com.example.messaging_back.dto.CreateMessageRequest;
 import com.example.messaging_back.entity.Message;
+import com.example.messaging_back.service.ConversationService;
 import com.example.messaging_back.service.MessageService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,19 +13,21 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/message")
 public class MessageController {
-    private MessageService messageService;
+    private final MessageService messageService;
+    private final ConversationService conversationService;
 
-    public MessageController(MessageService messageService){
+    public MessageController(MessageService messageService, ConversationService conversationService){
         this.messageService = messageService;
+        this.conversationService = conversationService;
     }
 
     @PostMapping
-    public ResponseEntity<Message> createMessage(@RequestBody Message request){
+    public ResponseEntity<Message> createMessage(@RequestBody CreateMessageRequest request){
         return ResponseEntity.ok(
                 messageService.createMessage(
-                        request.getSender(),
-                        request.getConversation(),
-                        request.getContent()
+                        request.senderId(),
+                        request.conversationId(),
+                        request.content()
                 )
         );
     }
