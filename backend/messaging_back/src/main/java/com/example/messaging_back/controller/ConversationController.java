@@ -32,7 +32,7 @@ public class ConversationController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Conversation> getConversationById(@RequestParam UUID id){
+    public ResponseEntity<Conversation> getConversationById(@PathVariable UUID id){
         return conversationService.getConversationById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -46,8 +46,8 @@ public class ConversationController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteConversation(@RequestParam UUID id){
-        conversationService.deleteConversation(id);
+    public ResponseEntity<Void> deleteConversation(@PathVariable UUID id){
+        conversationService.deleteConversationById(id);
         return ResponseEntity.noContent().build();
     }
 }
