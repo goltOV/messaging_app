@@ -1,5 +1,6 @@
 package com.example.messaging_back.controller;
 
+import com.example.messaging_back.dto.CreateUserRequest;
 import com.example.messaging_back.entity.User;
 import com.example.messaging_back.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +19,12 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User request) {
+    public ResponseEntity<User> createUser(@RequestBody CreateUserRequest request) {
         return ResponseEntity.ok(
                 userService.createUser(
-                        request.getUsername(),
-                        request.getEmail(),
-                        request.getPasswordHash()
+                        request.username(),
+                        request.email(),
+                        request.password()
                 )
         );
     }
