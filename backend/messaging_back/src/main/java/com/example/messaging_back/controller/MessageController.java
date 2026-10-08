@@ -33,21 +33,21 @@ public class MessageController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Message> getMessageById(@RequestParam UUID id){
+    public ResponseEntity<Message> getMessageById(@PathVariable UUID id){
         return messageService.getMessageById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping
-    public ResponseEntity<List<Message>> getMessagesByConversation(@RequestParam Conversation request){
-        return ResponseEntity.ok(
-                messageService.getMessagesByConversation(request)
-        );
-    }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deleteMessage(@RequestParam UUID id){
+
+
+
+
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteMessage(@PathVariable UUID id){
         messageService.deleteMessage(id);
         return ResponseEntity.noContent().build();
     }
